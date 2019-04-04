@@ -1,13 +1,14 @@
 import pygame
 from colorpalette import *
+subImg = pygame.image.load("images/sub.png")
 
 
 # PRIMARY FUNCTIONS
 def avatar(px, py, username, GUI):
-    pygame.draw.rect(GUI, yellow, [px, py, 20, 10])
+    GUI.blit(subImg, [px, py, 20, 10])
     font = pygame.font.SysFont(None, 30)
     text = font.render(username, True, red)
-    GUI.blit(text, [px - 40, py - 50])
+    GUI.blit(text, [px - 30, py - 30])
 
 
 def gameover(GUI):

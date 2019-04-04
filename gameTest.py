@@ -3,7 +3,6 @@ import random
 from gamefunc import *
 from colorpalette import *
 backgroundImg = pygame.image.load("images/background.png")
-subImg = pygame.image.load("images/sub.png")
 
 
 def startGame():
