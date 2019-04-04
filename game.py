@@ -85,6 +85,16 @@ def Instruction():
     text = font.render("Press Any Key to Begin, Up Down Left Right Arrow to Move, Avoid obstacles", True, black)
     GUI.blit(text, [0, 500])
 
+def groundCollision(py):
+    if py >= 480:
+        py = 480
+    return py
+
+def ceilingCollision(py):
+    if py <= 50:
+        py = 50
+    return py
+
 
 pygame.init()
 
@@ -148,7 +158,8 @@ while not gameFINISH:
                 xspeed = stopspeed
             if event.key == pygame.K_LEFT:
                 xspeed = stopspeed
-        # real-time testing
+
+        # REAL TIME UNIT TESTING
         if event.type == pygame.KEYDOWN:
             if event.key == pygame.K_LEFT:
                 print('LEFT ARROW PRESSED')
@@ -177,6 +188,7 @@ while not gameFINISH:
     # ground collision
     if py >= 480:
         py = 480
+
 
     # reset and re-randomize pipes
     if xpos < -80:
