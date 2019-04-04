@@ -41,7 +41,5 @@ class TestLimits(unittest.TestCase):
         self.assertEqual(groundCollision(self.py), 480, msg='assert equal 480')
 
 
-
-
 if __name__ == '__main__':
     unittest.main()
