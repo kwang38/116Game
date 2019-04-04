@@ -140,8 +140,8 @@ def startGame():
             py = 50
 
         # ground collision
-        if py >= 480:
-            py = 480
+        if py >= 490:
+            py = 490
 
         # reset and re-randomize pipes
         if xpos < -80:
