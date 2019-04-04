@@ -103,6 +103,7 @@ def startGame():
     stopspeed = 0
     pipspeed = 0
 
+    # game active state
     gameFINISH = False
     gameOVER = False
 
