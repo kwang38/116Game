@@ -42,18 +42,22 @@ def bottompipe(xpos, ypos, width, length, space, GUI):
 def ceiling(GUI):
     pygame.draw.rect(GUI, bluegray, [0, 0, 700, 50])
 
+
 def ground(GUI):
     pygame.draw.rect(GUI, bluegray, [0, 500, 700, 50])
+
 
 def Instruction(GUI):
     font = pygame.font.SysFont(None, 25)
     text = font.render("Press Any Key to Begin, Up Down Left Right Arrow to Move, Avoid obstacles", True, black)
     GUI.blit(text, [0, 500])
 
+
 def groundCollision(py):
     if py >= 480:
         py = 480
     return py
+
 
 def ceilingCollision(py):
     if py <= 50:
@@ -174,13 +178,19 @@ def startGame():
                 if event.key == pygame.K_ESCAPE:
                     print('ESCAPE KEY PRESSED')
                     quit()
-        # COLLISIONS
+
+        # COLLISIONS TYPES
+        frontCollision = xpos - 20
+        backCollision = xpos + width
+        topSpaceCollision = ypos + length
+        bottomSpaceCollision = ypos + length + space - 10
 
         # top pipe collision
-        if xpos - 20 < px < xpos + width and py < ypos + length:
+        if frontCollision < px < backCollision and py < topSpaceCollision:
             gameOVER = True
+
         # bottom pipe collision
-        if xpos - 20 < px < xpos + width and py > ypos + length + space - 10:
+        if frontCollision < px < backCollision and py > bottomSpaceCollision:
             gameOVER = True
 
         # ceiling collision
@@ -207,3 +217,4 @@ def startGame():
 
 
 startGame()
+
