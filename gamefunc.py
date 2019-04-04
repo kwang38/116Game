@@ -39,7 +39,7 @@ def ground(GUI):
 
 def Instruction(GUI):
     font = pygame.font.SysFont(None, 25)
-    text = font.render("Press Any Key to Begin, Up Down Left Right Arrow to Move, Avoid obstacles", True, black)
+    text = font.render("Press Any Key to Begin. Use Arrow Keys to Move and Avoid the Obstacles!", True, black)
     GUI.blit(text, [0, 500])
 
 
