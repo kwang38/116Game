@@ -14,7 +14,7 @@ def avatar(px, py, username, GUI, plength, pwidth):
 def gameover(GUI):
     GUI.fill(white)
     font = pygame.font.SysFont(None, 60)
-    text = font.render("Game Over!", True, red)
+    text = font.render("Your Submarine Sunk!", True, red)
     text2 = font.render("Press Esc to Quit", True, red)
     GUI.blit(text, [220, 250])
     GUI.blit(text2, [170, 300])
