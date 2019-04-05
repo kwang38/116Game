@@ -52,7 +52,7 @@ def startGame():
     timesUp = False
 
     clock = pygame.time.Clock()
-    timer = 30
+    timer = 500
 
     counter, countdowntext = 10, "10".rjust(3)
     pygame.time.set_timer(pygame.USEREVENT, 1000)
@@ -164,6 +164,10 @@ def startGame():
         # ground collision
         if py >= 490:
             py = 490
+
+        # offScreen collision
+        if px <= -70:
+            gameOVER = True
 
         # reset and re-randomize pipes
         obstaclelimit = -110
