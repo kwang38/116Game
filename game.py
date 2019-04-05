@@ -1,13 +1,14 @@
 import pygame
 import random
 from gamefunc import *
+import math
 from colorpalette import *
-backgroundImg = pygame.image.load("images/background.png")
 
 
 def startGame():
 
     pygame.init()
+    backgroundImg = pygame.image.load("images/background.png")
 
     # screen details
     WIDTH = 700
@@ -19,13 +20,14 @@ def startGame():
     pygame.display.set_caption("Under Da Sea Adventures")
 
     # IN GAME VALUES
-
     # player name
     name = "Player01"
 
     # player position at start of game
     px = 150
     py = 150
+    plength = 20
+    pwidth = 10
 
     # object positions
     xpos = 700
@@ -42,16 +44,22 @@ def startGame():
     movespeed = 6
     stopspeed = 0
     pipspeed = 0
+    countdown = 0
 
     # game active state
     gameFINISH = False
     gameOVER = False
+    timesUp = False
 
     clock = pygame.time.Clock()
+    timer = 30
+
+    counter, countdowntext = 10, "10".rjust(3)
+    pygame.time.set_timer(pygame.USEREVENT, 1000)
+    font = pygame.font.SysFont('Consolas', 30)
 
     while not gameFINISH:
         # background
-
         GUI.blit(backgroundImg, [0, 0])
 
         # top pipe
@@ -67,7 +75,7 @@ def startGame():
         ground(GUI)
 
         # player
-        avatar(px, py, name, GUI)
+        avatar(px, py, name, GUI, plength, pwidth)
 
         # instructions
         Instruction(GUI)
@@ -77,15 +85,19 @@ def startGame():
         px += xspeed
         xpos -= pipspeed
 
+
+
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 gameFINISH = True
 
             # CONTROLS
             if event.type == pygame.KEYDOWN:
-
                 # START MOVING PIPES
                 pipspeed = 4
+                # # timer countdown
+                # seconds = clock.tick() / 1000
+                countdown = 1
 
                 if event.key == pygame.K_UP:
                     yspeed = -movespeed
@@ -119,12 +131,23 @@ def startGame():
                 if event.key == pygame.K_ESCAPE:
                     print('ESCAPE KEY PRESSED')
                     quit()
+        timer -= countdown
+        showTimer = math.trunc(timer)
+
+        # timer display in GUI
+        timerFont = pygame.font.SysFont(None, 30)
+        timerText = timerFont.render("Time Left: " + str(showTimer), 1, [255, 0, 0])
+        GUI.blit(timerText, [300, 50])
+
+        # timer
+        if showTimer <= 0:
+            timesUp = True
 
         # COLLISIONS TYPES
-        frontCollision = xpos - 20
+        frontCollision = xpos - plength
         backCollision = xpos + width
         topSpaceCollision = ypos + length
-        bottomSpaceCollision = ypos + length + space - 10
+        bottomSpaceCollision = ypos + length + space - pwidth
 
         # top pipe collision
         if frontCollision < px < backCollision and py < topSpaceCollision:
@@ -143,13 +166,17 @@ def startGame():
             py = 490
 
         # reset and re-randomize pipes
-        if xpos < -80:
+        obstaclelimit = -110
+        if xpos < obstaclelimit:
             xpos = 700
             length = random.randint(30, 450)
             space = random.randint(20, 100)
 
         if gameOVER:
             gameover(GUI)
+
+        if timesUp:
+            timerUp(GUI)
 
         pygame.display.flip()
         clock.tick(FPS)

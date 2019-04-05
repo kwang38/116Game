@@ -4,8 +4,8 @@ subImg = pygame.image.load("images/sub.png")
 
 
 # PRIMARY FUNCTIONS
-def avatar(px, py, username, GUI):
-    GUI.blit(subImg, [px, py, 20, 10])
+def avatar(px, py, username, GUI, plength, pwidth):
+    GUI.blit(subImg, [px, py, pwidth, plength])
     font = pygame.font.SysFont(None, 30)
     text = font.render(username, True, red)
     GUI.blit(text, [px - 30, py - 30])
@@ -23,7 +23,7 @@ def gameover(GUI):
 def timerUp(GUI):
     GUI.fill(white)
     font = pygame.font.SysFont(None, 60)
-    text = font.render("Congratulations! You won!", True, green)
+    text = font.render("Player01 Survived! Victory!", True, green)
     text2 = font.render("Press Esc to Quit", True, green)
     GUI.blit(text, [80, 250])
     GUI.blit(text2, [170, 300])
