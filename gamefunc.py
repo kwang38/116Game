@@ -15,9 +15,18 @@ def gameover(GUI):
     GUI.fill(white)
     font = pygame.font.SysFont(None, 60)
     text = font.render("Game Over!", True, red)
-    text2 = font.render("Press Esc to Quit.", True, red)
-    GUI.blit(text, [150, 250])
-    GUI.blit(text2, [150, 300])
+    text2 = font.render("Press Esc to Quit", True, red)
+    GUI.blit(text, [220, 250])
+    GUI.blit(text2, [170, 300])
+
+
+def timerUp(GUI):
+    GUI.fill(white)
+    font = pygame.font.SysFont(None, 60)
+    text = font.render("Congratulations! You won!", True, green)
+    text2 = font.render("Press Esc to Quit", True, green)
+    GUI.blit(text, [80, 250])
+    GUI.blit(text2, [170, 300])
 
 
 def toppipe(xpos, ypos, width, length, GUI):

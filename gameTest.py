@@ -1,13 +1,14 @@
 import pygame
 import random
 from gamefunc import *
+import math
 from colorpalette import *
-backgroundImg = pygame.image.load("images/background.png")
 
 
 def startGame():
 
     pygame.init()
+    backgroundImg = pygame.image.load("images/background.png")
 
     # screen details
     WIDTH = 700
@@ -46,12 +47,17 @@ def startGame():
     # game active state
     gameFINISH = False
     gameOVER = False
+    timesUp = False
 
     clock = pygame.time.Clock()
+    timer = 30000
+
+    counter, countdowntext = 10, "10".rjust(3)
+    pygame.time.set_timer(pygame.USEREVENT, 1000)
+    font = pygame.font.SysFont('Consolas', 30)
 
     while not gameFINISH:
         # background
-
         GUI.blit(backgroundImg, [0, 0])
 
         # top pipe
@@ -77,13 +83,22 @@ def startGame():
         px += xspeed
         xpos -= pipspeed
 
+        # # timer countdown
+        seconds = clock.tick()/1000
+        timer -= seconds
+        showTimer = math.trunc(timer)
+        # timer display in GUI
+        timerFont = pygame.font.SysFont(None, 30)
+        timerText = timerFont.render("Time Left: " + str(showTimer), 1, [255, 0, 0])
+        GUI.blit(timerText, [300, 50])
+
+
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 gameFINISH = True
 
             # CONTROLS
             if event.type == pygame.KEYDOWN:
-
                 # START MOVING PIPES
                 pipspeed = 4
 
@@ -148,8 +163,16 @@ def startGame():
             length = random.randint(30, 450)
             space = random.randint(20, 100)
 
+        #timer
+
+        if showTimer <= 0:
+            timesUp = True
+
         if gameOVER:
             gameover(GUI)
+
+        if timesUp:
+            timerUp(GUI)
 
         pygame.display.flip()
         clock.tick(FPS)
