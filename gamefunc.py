@@ -16,7 +16,7 @@ def gameover(GUI):
     font = pygame.font.SysFont(None, 60)
     text = font.render("Your Submarine Sunk!", True, red)
     text2 = font.render("Press Esc to Quit", True, red)
-    GUI.blit(text, [220, 250])
+    GUI.blit(text, [120, 250])
     GUI.blit(text2, [170, 300])
 
 
