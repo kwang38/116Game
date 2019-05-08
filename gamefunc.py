@@ -23,9 +23,9 @@ def gameover(GUI):
 def timerUp(GUI):
     GUI.fill(white)
     font = pygame.font.SysFont(None, 60)
-    text = font.render("Player01 Survived! Victory!", True, green)
+    text = font.render("You Survived!", True, green)
     text2 = font.render("Press Esc to Quit", True, green)
-    GUI.blit(text, [80, 250])
+    GUI.blit(text, [200, 250])
     GUI.blit(text2, [170, 300])
 
 

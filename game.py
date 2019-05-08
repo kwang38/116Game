@@ -141,7 +141,8 @@ def startGame():
 
         # timer
         if showTimer <= 0:
-            timesUp = True
+            if gameOVER != True:
+                timesUp = True
 
         # COLLISIONS TYPES
         frontCollision = xpos - plength
