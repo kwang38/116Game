@@ -13,11 +13,11 @@ def avatar(px, py, username, GUI, plength, pwidth):
 
 def gameover(GUI):
     GUI.fill(white)
-    font = pygame.font.SysFont(None, 60)
-    text = font.render("Your Submarine Sunk!", True, red)
-    text2 = font.render("Press Esc to Quit", True, red)
-    GUI.blit(text, [120, 250])
-    GUI.blit(text2, [170, 300])
+    style = pygame.font.SysFont(None, 60)
+    words = style.render("Your Submarine Sunk!", True, red)
+    words2 = style.render("Press Esc to Quit", True, red)
+    GUI.blit(words, [120, 250])
+    GUI.blit(words2, [170, 300])
 
 
 def timerUp(GUI):
