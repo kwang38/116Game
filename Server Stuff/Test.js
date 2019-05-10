@@ -24,29 +24,21 @@ function action_on_response(response){
     console.log("The server responded with: " + response);
     }
 
-function called_on_button_press(){
+function call_on_key_pressed(){
     ajaxPostRequest("/some_path", "Button pressed", action_on_response);
    }
 
-function renderTest(response){
-    var chat = "";
-    for(var data of JSON.parse(response).reverse()){
-        chat = chat + data.message + "</br>";
-    }
-    document.getElementById("test").innerHTML = chat;
-   }
 
 function loadTest(){
     ajaxGetRequest("/storage", renderTest);
    }
 
 function sendTest(){
-    var messageElement = document.getElementById("message");
+    var moveElement = document.getElementById("action");
 
-    var message = messageElement.value;
-    messageElement.value = "";
-    var toSend = JSON.stringify({"message": message});
-    ajaxPostRequest("/send", toSend, renderTest);
+    var action = moveElement.value;
+    var toSend = JSON.stringify({"action": action});
+    ajaxPostRequest("/send", toSend, game.py);
    }
 
 function checkEnter(keyUpEvent){
