@@ -22,11 +22,11 @@ def gameover(GUI):
 
 def timerUp(GUI):
     GUI.fill(white)
-    font = pygame.font.SysFont(None, 60)
-    text = font.render("You Survived!", True, green)
-    text2 = font.render("Press Esc to Quit", True, green)
-    GUI.blit(text, [200, 250])
-    GUI.blit(text2, [170, 300])
+    style = pygame.font.SysFont(None, 60)
+    words = style.render("You Survived!", True, green)
+    words2 = style.render("Press Esc to Quit", True, green)
+    GUI.blit(words, [200, 250])
+    GUI.blit(words2, [170, 300])
 
 
 def toppipe(xpos, ypos, width, length, GUI):
@@ -48,9 +48,9 @@ def ground(GUI):
 
 
 def Instruction(GUI):
-    font = pygame.font.SysFont(None, 25)
-    text = font.render("Press Any Key to Begin. Use Arrow Keys to Move and Avoid the Obstacles!", True, black)
-    GUI.blit(text, [0, 500])
+    style = pygame.font.SysFont(None, 25)
+    words = style.render("Press Any Key to Begin. Use Arrow Keys to Move and Avoid the Obstacles!", True, black)
+    GUI.blit(words, [0, 500])
 
 
 def groundCollision(py):
