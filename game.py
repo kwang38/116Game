@@ -52,7 +52,7 @@ def startGame():
     timesUp = False
 
     clock = pygame.time.Clock()
-    timer = 500
+    timer = 1000
 
     counter, countdowntext = 10, "10".rjust(3)
     pygame.time.set_timer(pygame.USEREVENT, 1000)
