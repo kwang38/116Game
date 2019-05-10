@@ -14,15 +14,15 @@ def static():
 
 
 @bottle.route('/storage')
-def get_chat():
+def get_movement():
     return json.dumps(storage.getTest())
 
 
 @bottle.post('/send')
-def do_chat():
+def take_movement():
     content = bottle.request.body.read().decode()
     content = json.loads(content)
-    storage.addTest(content['message'])
+    storage.addTest(content['action'])
     return json.dumps(storage.getTest())
 
 

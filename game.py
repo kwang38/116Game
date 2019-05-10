@@ -40,10 +40,15 @@ def startGame():
 
     # speed
     xspeed = 0
+
     yspeed = 0
+
     movespeed = 6
+
     stopspeed = 0
+
     pipspeed = 0
+
     countdown = 0
 
     # game active state
